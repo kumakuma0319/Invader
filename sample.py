@@ -11,6 +11,7 @@ img = pygame.image.load('player.png')
 X = 370
 Y = 480
 
+mixer.Sound('laser.wav').play()
 
 running = True
 while running:
