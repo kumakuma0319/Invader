@@ -1,4 +1,5 @@
 import pygame
+from pygame import mixer
 
 pygame.init()
 
@@ -9,7 +10,6 @@ pygame.display.set_caption('Invaders Game')
 img = pygame.image.load('player.png')
 X = 370
 Y = 480
-
 
 
 running = True
