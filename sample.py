@@ -20,6 +20,8 @@ enemyX = random.randint(0, 736)
 enemyY = random.randint(50, 150)
 enemyX_change, enemyY_change = 4, 40
 
+# Score
+score_value = 0
 
 def player(x, y):
     screen.blit(playerImg, (x,y))
@@ -70,6 +72,11 @@ while running:
     elif enemyX >=736: #右端に来たら
         enemyX_change = -4
         enemyY += enemyY_change
+
+    #Score
+    font = pygame.font.SysFont(None, 32) # フォントの作成　Noneはデフォルトのfreesansbold.ttf
+    score = font.render(f"Score : {str(score_value)}", True, (255,255,255)) # テキストを描画したSurfaceの作成
+    screen.blit(score, (20,50))
 
     player(playerX , playerY)
     enemy(enemyX, enemyY)
