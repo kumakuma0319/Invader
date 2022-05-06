@@ -2,6 +2,7 @@ from re import X
 import pygame
 from pygame import mixer
 import random
+import math
 
 pygame.init()
 
@@ -20,6 +21,12 @@ enemyX = random.randint(0, 736)
 enemyY = random.randint(50, 150)
 enemyX_change, enemyY_change = 4, 40
 
+# Bullet
+bulletImg = pygame.image.load('bullet.png')
+bulletX, bulletY = 0, 480
+bulletX_change, bulletY_change = 0, 3
+bullet_state = 'ready'
+
 # Score
 score_value = 0
 
@@ -28,6 +35,18 @@ def player(x, y):
 
 def enemy(x, y):
     screen.blit(enemyImg, (x, y))
+
+def fire_bullet(x, y):
+    global bullet_state
+    bullet_state = 'fire'
+    screen.blit(bulletImg, (x + 16, y + 10))
+
+def isCollision(enemyX, enemyY, bulletX, bulletY):
+    distance = math.sqrt(math.pow(enemyX - bulletX, 2) + math.pow(enemyY - bulletY, 2))
+    if distance < 27:
+        return True
+    else:
+        return False
 
 running = True
 while running:
@@ -72,6 +91,17 @@ while running:
     elif enemyX >=736: #右端に来たら
         enemyX_change = -4
         enemyY += enemyY_change
+
+    collision = isCollision(enemyX, enemyY, bulletX, bulletY)
+    if collision:
+        bulletY = 480
+        bullet_state = 'ready'
+        score_value += 1
+        enemyX = random.randint(0, 736)
+        enemyY = random.randint(50, 150)
+
+    
+
 
     #Score
     font = pygame.font.SysFont(None, 32) # フォントの作成　Noneはデフォルトのfreesansbold.ttf
