@@ -1,6 +1,7 @@
 from re import X
 import pygame
 from pygame import mixer
+import random
 
 pygame.init()
 
@@ -13,9 +14,18 @@ playerImg = pygame.image.load('player.png')
 playerX, playerY = 370, 480
 playerX_change = 0
 
-# mixer.Sound('laser.wav').play()
+# Enemy
+enemyImg = pygame.image.load('enemy.png')
+enemyX = random.randint(0, 736)
+enemyY = random.randint(50, 150)
+enemyX_change, enemyY_change = 4, 40
+
+
 def player(x, y):
     screen.blit(playerImg, (x,y))
+
+def enemy(x, y):
+    screen.blit(enemyImg, (x, y))
 
 running = True
 while running:
@@ -44,6 +54,11 @@ while running:
 
 
     playerX += playerX_change
+    if playerX <= 0:
+        playerX = 0
+    elif playerX >= 736:
+        playerX = 736
+    
     player(playerX , playerY)
 
     pygame.display.update()
