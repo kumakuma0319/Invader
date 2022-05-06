@@ -52,13 +52,25 @@ while running:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
                 playerX_change = 0
 
-
+    # Player
     playerX += playerX_change
     if playerX <= 0:
         playerX = 0
     elif playerX >= 736:
         playerX = 736
     
-    player(playerX , playerY)
 
+    #Enemy
+    if enemyY > 440:
+        break
+    enemyX += enemyX_change
+    if enemyX <= 0: #左端に来たら
+        enemyX_change = 4
+        enemyY += enemyY_change
+    elif enemyX >=736: #右端に来たら
+        enemyX_change = -4
+        enemyY += enemyY_change
+
+    player(playerX , playerY)
+    enemy(enemyX, enemyY)
     pygame.display.update()
