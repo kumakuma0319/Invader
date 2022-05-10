@@ -10,6 +10,7 @@ pygame.init()
 pygame.mixer.music.load('background.wav')
 pygame.mixer.music.play(-1)
 
+
 screen = pygame.display.set_mode((800, 600))
 # screen.fill((150, 150, 150))
 pygame.display.set_caption('Invaders Game')
