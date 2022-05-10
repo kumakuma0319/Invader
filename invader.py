@@ -6,6 +6,10 @@ import math
 
 pygame.init()
 
+# BGM
+pygame.mixer.music.load('background.wav')
+pygame.mixer.music.play(-1)
+
 screen = pygame.display.set_mode((800, 600))
 # screen.fill((150, 150, 150))
 pygame.display.set_caption('Invaders Game')
@@ -51,7 +55,6 @@ def isCollision(enemyX, enemyY, bulletX, bulletY):
 running = True
 while running:
     screen.fill((0, 0, 0))
-
     # font = pygame.font.SysFont(None, 80)
     # message = font.render('Hello World', False, (255, 255, 255))
     # screen.blit(message, (20, 50))
