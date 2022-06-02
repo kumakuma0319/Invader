@@ -10,6 +10,8 @@ pygame.init()
 pygame.mixer.music.load('background.wav')
 pygame.mixer.music.play(-1)
 
+# 効果音をロード
+hit_sound = pygame.mixer.Sound("laser.wav")
 
 screen = pygame.display.set_mode((800, 600))
 # screen.fill((150, 150, 150))
@@ -72,6 +74,7 @@ while running:
                 if bullet_state is 'ready':
                     bulletX = playerX
                     fire_bullet(bulletX, bulletY)
+                    hit_sound.play()
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
@@ -112,7 +115,7 @@ while running:
 
     if bullet_state is 'fire':
         fire_bullet(bulletX, bulletY)
-        bulletY -= bulletY_change  
+        bulletY -= bulletY_change
 
 
     #Score
